@@ -147,14 +147,14 @@ RunButton.MouseButton1Click:Connect(function()
     RunButton.Text = "Copy & Run Script"
 end)
 
--- Button 2 Logic: Run OnyxHub Script
+-- Button 2 Logic: Run OnyxHub Script (FIXED URL)
 OnyxButton.MouseButton1Click:Connect(function()
-    local onyxScript = 'loadstring(game:HttpGet("https://githubusercontent.com"))()'
+    local onyxScript = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/zyntrix20/OnyxHub/refs/heads/main/Loader"))()
     OnyxButton.Text = "Processing OnyxHub..."
     
     if setclipboard then setclipboard(onyxScript) end
     pcall(function()
-        loadstring(game:HttpGet("https://githubusercontent.com"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/zyntrix20/OnyxHub/refs/heads/main/Loader"))()
     end)
     
     task.wait(0.5)
@@ -165,12 +165,12 @@ end)
 
 -- Button 3 Logic: Run Rivals Aimbot Script
 RivalsButton.MouseButton1Click:Connect(function()
-    local rivalsScript = 'loadstring(game:HttpGet("https://rawscripts.net/raw/RIVALS-Aimbot-no-banned-yes-sure-102092"))()'
+    local rivalsScript = 'loadstring(game:HttpGet("https://rawscripts.net"))()'
     RivalsButton.Text = "Processing Aimbot..."
     
     if setclipboard then setclipboard(rivalsScript) end
     pcall(function()
-        loadstring(game:HttpGet("https://rawscripts.net/raw/RIVALS-Aimbot-no-banned-yes-sure-102092"))()
+        loadstring(game:HttpGet("https://rawscripts.net"))()
     end)
     
     task.wait(0.5)
@@ -178,4 +178,3 @@ RivalsButton.MouseButton1Click:Connect(function()
     task.wait(1.5)
     RivalsButton.Text = "Run Aimbot (Rivals)"
 end)
-  
