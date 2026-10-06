@@ -1,9 +1,10 @@
--- 1 the hub
+-- 1. Create Core UI Instances
 local ScreenGui = Instance.new("ScreenGui")
 local MainFrame = Instance.new("Frame")
 local TitleBar = Instance.new("Frame")
 local TitleLabel = Instance.new("TextLabel")
 local MinimizeButton = Instance.new("TextButton")
+local CloseButton = Instance.new("TextButton") -- New Close Button
 local ButtonContainer = Instance.new("Frame")
 
 -- Buttons
@@ -45,16 +46,16 @@ TitleCorner.Parent = TitleBar
 TitleLabel.Parent = TitleBar
 TitleLabel.BackgroundTransparency = 1
 TitleLabel.Position = UDim2.new(0.05, 0, 0, 0)
-TitleLabel.Size = UDim2.new(0.7, 0, 1, 0)
+TitleLabel.Size = UDim2.new(0.6, 0, 1, 0) -- Adjusted size to fit both buttons
 TitleLabel.Text = "Loader Hub"
 TitleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 TitleLabel.TextSize = 18
 TitleLabel.Font = Enum.Font.SourceSansBold
 TitleLabel.TextXAlignment = Enum.TextXAlignment.Left
 
--- 4. The Minimize Window Control
+-- 4. Window Control Actions (Minimize & Close)
 MinimizeButton.Parent = TitleBar
-MinimizeButton.Position = UDim2.new(0.85, 0, 0.15, 0)
+MinimizeButton.Position = UDim2.new(0.72, 0, 0.15, 0) -- Moved slightly left
 MinimizeButton.Size = UDim2.new(0, 30, 0, 26)
 MinimizeButton.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
 MinimizeButton.Text = "-"
@@ -65,6 +66,19 @@ MinimizeButton.Font = Enum.Font.SourceSansBold
 local MinCorner = Instance.new("UICorner")
 MinCorner.CornerRadius = UDim.new(0, 4)
 MinCorner.Parent = MinimizeButton
+
+CloseButton.Parent = TitleBar
+CloseButton.Position = UDim2.new(0.86, 0, 0.15, 0) -- Positioned on the far right
+CloseButton.Size = UDim2.new(0, 30, 0, 26)
+CloseButton.BackgroundColor3 = Color3.fromRGB(180, 40, 40) -- Dark Red Close Button
+CloseButton.Text = "X"
+CloseButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+CloseButton.TextSize = 15
+CloseButton.Font = Enum.Font.SourceSansBold
+
+local CloseCorner = Instance.new("UICorner")
+CloseCorner.CornerRadius = UDim.new(0, 4)
+CloseCorner.Parent = CloseButton
 
 -- 5. Button Layout Organizers
 ButtonContainer.Parent = MainFrame
@@ -115,6 +129,11 @@ RivalsCorner.Parent = RivalsButton
 -- SCRIPT LOGIC & CONNECTIONS
 -- ==========================================
 
+-- Close Button Logic
+CloseButton.MouseButton1Click:Connect(function()
+    ScreenGui:Destroy() -- Removes the entire GUI completely
+end)
+
 -- Minimize Toggle Code
 local isMinimized = false
 MinimizeButton.MouseButton1Click:Connect(function()
@@ -145,14 +164,14 @@ RunButton.MouseButton1Click:Connect(function()
     RunButton.Text = "Copy & Run Script"
 end)
 
--- Button 2 Logic: Run OnyxHub Script (FULLY PROPER SINGLE STRING)
+-- Button 2 Logic: Run OnyxHub Script
 OnyxButton.MouseButton1Click:Connect(function()
-    local onyxScript = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/zyntrix20/OnyxHub/refs/heads/main/Loader"))()'
+    local onyxScript = 'loadstring(game:HttpGet("https://githubusercontent.com"))()'
     OnyxButton.Text = "Processing OnyxHub..."
     print("Loader: successful!")
-    if setclipboard then setclipboard(onyxScript) end
+    if setclipboard then setclipboard(yxScript) end
     pcall(function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/zyntrix20/OnyxHub/refs/heads/main/Loader"))()
+        loadstring(game:HttpGet("https://githubusercontent.com"))()
     end)
     task.wait(0.5)
     OnyxButton.Text = "Copied & Fired OnyxHub!"
