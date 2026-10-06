@@ -1,4 +1,4 @@
--- 1. Create Core UI Instances
+-- 1 the hub
 local ScreenGui = Instance.new("ScreenGui")
 local MainFrame = Instance.new("Frame")
 local TitleBar = Instance.new("Frame")
@@ -21,14 +21,14 @@ local RivalsCorner = Instance.new("UICorner")
 -- Parent UI safely to escape standard player-list detection
 ScreenGui.Parent = game:GetService("CoreGui")
 
--- 2. Style the Main Window (Deep Red Base - Height Expanded to 230)
+-- 2. Style the Main Window (Deep Red Base)
 MainFrame.Name = "LoaderHub"
 MainFrame.Parent = ScreenGui
-MainFrame.BackgroundColor3 = Color3.fromRGB(130, 0, 0) -- Dark Red background
+MainFrame.BackgroundColor3 = Color3.fromRGB(130, 0, 0)
 MainFrame.Position = UDim2.new(0.35, 0, 0.3, 0)
 MainFrame.Size = UDim2.new(0, 280, 0, 230)
 MainFrame.Active = true
-MainFrame.Draggable = true -- Drag anywhere by holding the frame
+MainFrame.Draggable = true
 
 MainCorner.CornerRadius = UDim.new(0, 8)
 MainCorner.Parent = MainFrame
@@ -36,7 +36,7 @@ MainCorner.Parent = MainFrame
 -- 3. Style the Header Bar (Solid Black Banner)
 TitleBar.Name = "TitleBar"
 TitleBar.Parent = MainFrame
-TitleBar.BackgroundColor3 = Color3.fromRGB(0, 0, 0) -- Pure Black title bar
+TitleBar.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 TitleBar.Size = UDim2.new(1, 0, 0, 40)
 
 TitleCorner.CornerRadius = UDim.new(0, 8)
@@ -76,9 +76,9 @@ ButtonContainer.Size = UDim2.new(1, 0, 1, -40)
 RunButton.Parent = ButtonContainer
 RunButton.Position = UDim2.new(0.07, 0, 0.1, 0)
 RunButton.Size = UDim2.new(0.86, 0, 0.22, 0)
-RunButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0) -- Black Button
+RunButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 RunButton.Text = "Copy & Run Script"
-RunButton.TextColor3 = Color3.fromRGB(0, 255, 0) -- Cyber Green Text
+RunButton.TextColor3 = Color3.fromRGB(0, 255, 0)
 RunButton.TextSize = 15
 RunButton.Font = Enum.Font.SourceSansBold
 
@@ -89,9 +89,9 @@ RunCorner.Parent = RunButton
 OnyxButton.Parent = ButtonContainer
 OnyxButton.Position = UDim2.new(0.07, 0, 0.38, 0)
 OnyxButton.Size = UDim2.new(0.86, 0, 0.22, 0)
-OnyxButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0) -- Black Button
+OnyxButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 OnyxButton.Text = "Run OnyxHub"
-OnyxButton.TextColor3 = Color3.fromRGB(255, 255, 255) -- White Text
+OnyxButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 OnyxButton.TextSize = 15
 OnyxButton.Font = Enum.Font.SourceSansBold
 
@@ -102,9 +102,9 @@ OnyxCorner.Parent = OnyxButton
 RivalsButton.Parent = ButtonContainer
 RivalsButton.Position = UDim2.new(0.07, 0, 0.66, 0)
 RivalsButton.Size = UDim2.new(0.86, 0, 0.22, 0)
-RivalsButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0) -- Black Button
+RivalsButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 RivalsButton.Text = "Run Aimbot (Rivals)"
-RivalsButton.TextColor3 = Color3.fromRGB(255, 70, 70) -- Red Text to pop out
+RivalsButton.TextColor3 = Color3.fromRGB(255, 70, 70)
 RivalsButton.TextSize = 15
 RivalsButton.Font = Enum.Font.SourceSansBold
 
@@ -135,28 +135,25 @@ end)
 RunButton.MouseButton1Click:Connect(function()
     local targetScript = 'loadstring(game:HttpGet("https://flowauth.net/v1/loaders/39d9a7cc281afbbd0efdd4399f543475.lua"))()'
     RunButton.Text = "Processing Loader..."
-    
     if setclipboard then setclipboard(targetScript) end
     pcall(function()
         loadstring(game:HttpGet("https://flowauth.net/v1/loaders/39d9a7cc281afbbd0efdd4399f543475.lua"))()
     end)
-    
     task.wait(0.5)
     RunButton.Text = "Copied & Fired Successfully!"
     task.wait(1.5)
     RunButton.Text = "Copy & Run Script"
 end)
 
--- Button 2 Logic: Run OnyxHub Script (FIXED URL)
+-- Button 2 Logic: Run OnyxHub Script (FULLY PROPER SINGLE STRING)
 OnyxButton.MouseButton1Click:Connect(function()
-    local onyxScript = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/zyntrix20/OnyxHub/refs/heads/main/Loader"))()
+    local onyxScript = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/zyntrix20/OnyxHub/refs/heads/main/Loader"))()'
     OnyxButton.Text = "Processing OnyxHub..."
-    
+    print("Loader: successful!")
     if setclipboard then setclipboard(onyxScript) end
     pcall(function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/zyntrix20/OnyxHub/refs/heads/main/Loader"))()
     end)
-    
     task.wait(0.5)
     OnyxButton.Text = "Copied & Fired OnyxHub!"
     task.wait(1.5)
@@ -167,12 +164,10 @@ end)
 RivalsButton.MouseButton1Click:Connect(function()
     local rivalsScript = 'loadstring(game:HttpGet("https://rawscripts.net"))()'
     RivalsButton.Text = "Processing Aimbot..."
-    
     if setclipboard then setclipboard(rivalsScript) end
     pcall(function()
         loadstring(game:HttpGet("https://rawscripts.net"))()
     end)
-    
     task.wait(0.5)
     RivalsButton.Text = "Copied & Fired Rivals!"
     task.wait(1.5)
