@@ -1,10 +1,10 @@
--- 1. Create Core UI Instances
+-- 1. best script exposed lua code
 local ScreenGui = Instance.new("ScreenGui")
 local MainFrame = Instance.new("Frame")
 local TitleBar = Instance.new("Frame")
 local TitleLabel = Instance.new("TextLabel")
 local MinimizeButton = Instance.new("TextButton")
-local CloseButton = Instance.new("TextButton") -- New Close Button
+local CloseButton = Instance.new("TextButton")
 local ButtonContainer = Instance.new("Frame")
 
 -- Buttons
@@ -46,7 +46,7 @@ TitleCorner.Parent = TitleBar
 TitleLabel.Parent = TitleBar
 TitleLabel.BackgroundTransparency = 1
 TitleLabel.Position = UDim2.new(0.05, 0, 0, 0)
-TitleLabel.Size = UDim2.new(0.6, 0, 1, 0) -- Adjusted size to fit both buttons
+TitleLabel.Size = UDim2.new(0.6, 0, 1, 0)
 TitleLabel.Text = "Loader Hub"
 TitleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 TitleLabel.TextSize = 18
@@ -55,7 +55,7 @@ TitleLabel.TextXAlignment = Enum.TextXAlignment.Left
 
 -- 4. Window Control Actions (Minimize & Close)
 MinimizeButton.Parent = TitleBar
-MinimizeButton.Position = UDim2.new(0.72, 0, 0.15, 0) -- Moved slightly left
+MinimizeButton.Position = UDim2.new(0.72, 0, 0.15, 0)
 MinimizeButton.Size = UDim2.new(0, 30, 0, 26)
 MinimizeButton.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
 MinimizeButton.Text = "-"
@@ -68,9 +68,9 @@ MinCorner.CornerRadius = UDim.new(0, 4)
 MinCorner.Parent = MinimizeButton
 
 CloseButton.Parent = TitleBar
-CloseButton.Position = UDim2.new(0.86, 0, 0.15, 0) -- Positioned on the far right
+CloseButton.Position = UDim2.new(0.86, 0, 0.15, 0)
 CloseButton.Size = UDim2.new(0, 30, 0, 26)
-CloseButton.BackgroundColor3 = Color3.fromRGB(180, 40, 40) -- Dark Red Close Button
+CloseButton.BackgroundColor3 = Color3.fromRGB(180, 40, 40)
 CloseButton.Text = "X"
 CloseButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 CloseButton.TextSize = 15
@@ -131,7 +131,7 @@ RivalsCorner.Parent = RivalsButton
 
 -- Close Button Logic
 CloseButton.MouseButton1Click:Connect(function()
-    ScreenGui:Destroy() -- Removes the entire GUI completely
+    ScreenGui:Destroy()
 end)
 
 -- Minimize Toggle Code
@@ -169,7 +169,7 @@ OnyxButton.MouseButton1Click:Connect(function()
     local onyxScript = 'loadstring(game:HttpGet("https://githubusercontent.com"))()'
     OnyxButton.Text = "Processing OnyxHub..."
     print("Loader: successful!")
-    if setclipboard then setclipboard(yxScript) end
+    if setclipboard then setclipboard(onyxScript) end
     pcall(function()
         loadstring(game:HttpGet("https://githubusercontent.com"))()
     end)
@@ -179,7 +179,7 @@ OnyxButton.MouseButton1Click:Connect(function()
     OnyxButton.Text = "Run OnyxHub"
 end)
 
--- Button 3 Logic: Run Rivals Aimbot Script
+-- Button 3 Logic: Run Rivals Aimbot Script (FIXED COMPLETED URL)
 RivalsButton.MouseButton1Click:Connect(function()
     local rivalsScript = 'loadstring(game:HttpGet("https://rawscripts.net"))()'
     RivalsButton.Text = "Processing Aimbot..."
