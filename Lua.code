@@ -1,0 +1,181 @@
+-- 1. Create Core UI Instances
+local ScreenGui = Instance.new("ScreenGui")
+local MainFrame = Instance.new("Frame")
+local TitleBar = Instance.new("Frame")
+local TitleLabel = Instance.new("TextLabel")
+local MinimizeButton = Instance.new("TextButton")
+local ButtonContainer = Instance.new("Frame")
+
+-- Buttons
+local RunButton = Instance.new("TextButton")
+local OnyxButton = Instance.new("TextButton")
+local RivalsButton = Instance.new("TextButton")
+
+-- UI Polish Elements
+local MainCorner = Instance.new("UICorner")
+local TitleCorner = Instance.new("UICorner")
+local RunCorner = Instance.new("UICorner")
+local OnyxCorner = Instance.new("UICorner")
+local RivalsCorner = Instance.new("UICorner")
+
+-- Parent UI safely to escape standard player-list detection
+ScreenGui.Parent = game:GetService("CoreGui")
+
+-- 2. Style the Main Window (Deep Red Base - Height Expanded to 230)
+MainFrame.Name = "LoaderHub"
+MainFrame.Parent = ScreenGui
+MainFrame.BackgroundColor3 = Color3.fromRGB(130, 0, 0) -- Dark Red background
+MainFrame.Position = UDim2.new(0.35, 0, 0.3, 0)
+MainFrame.Size = UDim2.new(0, 280, 0, 230)
+MainFrame.Active = true
+MainFrame.Draggable = true -- Drag anywhere by holding the frame
+
+MainCorner.CornerRadius = UDim.new(0, 8)
+MainCorner.Parent = MainFrame
+
+-- 3. Style the Header Bar (Solid Black Banner)
+TitleBar.Name = "TitleBar"
+TitleBar.Parent = MainFrame
+TitleBar.BackgroundColor3 = Color3.fromRGB(0, 0, 0) -- Pure Black title bar
+TitleBar.Size = UDim2.new(1, 0, 0, 40)
+
+TitleCorner.CornerRadius = UDim.new(0, 8)
+TitleCorner.Parent = TitleBar
+
+TitleLabel.Parent = TitleBar
+TitleLabel.BackgroundTransparency = 1
+TitleLabel.Position = UDim2.new(0.05, 0, 0, 0)
+TitleLabel.Size = UDim2.new(0.7, 0, 1, 0)
+TitleLabel.Text = "Loader Hub"
+TitleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+TitleLabel.TextSize = 18
+TitleLabel.Font = Enum.Font.SourceSansBold
+TitleLabel.TextXAlignment = Enum.TextXAlignment.Left
+
+-- 4. The Minimize Window Control
+MinimizeButton.Parent = TitleBar
+MinimizeButton.Position = UDim2.new(0.85, 0, 0.15, 0)
+MinimizeButton.Size = UDim2.new(0, 30, 0, 26)
+MinimizeButton.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+MinimizeButton.Text = "-"
+MinimizeButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+MinimizeButton.TextSize = 20
+MinimizeButton.Font = Enum.Font.SourceSansBold
+
+local MinCorner = Instance.new("UICorner")
+MinCorner.CornerRadius = UDim.new(0, 4)
+MinCorner.Parent = MinimizeButton
+
+-- 5. Button Layout Organizers
+ButtonContainer.Parent = MainFrame
+ButtonContainer.BackgroundTransparency = 1
+ButtonContainer.Position = UDim2.new(0, 0, 0, 40)
+ButtonContainer.Size = UDim2.new(1, 0, 1, -40)
+
+-- Button 1: Copy and Run Image Script
+RunButton.Parent = ButtonContainer
+RunButton.Position = UDim2.new(0.07, 0, 0.1, 0)
+RunButton.Size = UDim2.new(0.86, 0, 0.22, 0)
+RunButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0) -- Black Button
+RunButton.Text = "Copy & Run Script"
+RunButton.TextColor3 = Color3.fromRGB(0, 255, 0) -- Cyber Green Text
+RunButton.TextSize = 15
+RunButton.Font = Enum.Font.SourceSansBold
+
+RunCorner.CornerRadius = UDim.new(0, 6)
+RunCorner.Parent = RunButton
+
+-- Button 2: Copy and Run OnyxHub Script
+OnyxButton.Parent = ButtonContainer
+OnyxButton.Position = UDim2.new(0.07, 0, 0.38, 0)
+OnyxButton.Size = UDim2.new(0.86, 0, 0.22, 0)
+OnyxButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0) -- Black Button
+OnyxButton.Text = "Run OnyxHub"
+OnyxButton.TextColor3 = Color3.fromRGB(255, 255, 255) -- White Text
+OnyxButton.TextSize = 15
+OnyxButton.Font = Enum.Font.SourceSansBold
+
+OnyxCorner.CornerRadius = UDim.new(0, 6)
+OnyxCorner.Parent = OnyxButton
+
+-- Button 3: Copy and Run Rivals Aimbot Script
+RivalsButton.Parent = ButtonContainer
+RivalsButton.Position = UDim2.new(0.07, 0, 0.66, 0)
+RivalsButton.Size = UDim2.new(0.86, 0, 0.22, 0)
+RivalsButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0) -- Black Button
+RivalsButton.Text = "Run Aimbot (Rivals)"
+RivalsButton.TextColor3 = Color3.fromRGB(255, 70, 70) -- Red Text to pop out
+RivalsButton.TextSize = 15
+RivalsButton.Font = Enum.Font.SourceSansBold
+
+RivalsCorner.CornerRadius = UDim.new(0, 6)
+RivalsCorner.Parent = RivalsButton
+
+-- ==========================================
+-- SCRIPT LOGIC & CONNECTIONS
+-- ==========================================
+
+-- Minimize Toggle Code
+local isMinimized = false
+MinimizeButton.MouseButton1Click:Connect(function()
+    isMinimized = not isMinimized
+    if isMinimized then
+        ButtonContainer.Visible = false
+        MainFrame:TweenSize(UDim2.new(0, 280, 0, 40), "Out", "Quad", 0.2, true)
+        MinimizeButton.Text = "+"
+    else
+        MainFrame:TweenSize(UDim2.new(0, 280, 0, 230), "Out", "Quad", 0.2, true, function()
+            ButtonContainer.Visible = true
+        end)
+        MinimizeButton.Text = "-"
+    end
+end)
+
+-- Button 1 Logic: Run Image Script
+RunButton.MouseButton1Click:Connect(function()
+    local targetScript = 'loadstring(game:HttpGet("https://flowauth.net/v1/loaders/39d9a7cc281afbbd0efdd4399f543475.lua"))()'
+    RunButton.Text = "Processing Loader..."
+    
+    if setclipboard then setclipboard(targetScript) end
+    pcall(function()
+        loadstring(game:HttpGet("https://flowauth.net/v1/loaders/39d9a7cc281afbbd0efdd4399f543475.lua"))()
+    end)
+    
+    task.wait(0.5)
+    RunButton.Text = "Copied & Fired Successfully!"
+    task.wait(1.5)
+    RunButton.Text = "Copy & Run Script"
+end)
+
+-- Button 2 Logic: Run OnyxHub Script
+OnyxButton.MouseButton1Click:Connect(function()
+    local onyxScript = 'loadstring(game:HttpGet("https://githubusercontent.com"))()'
+    OnyxButton.Text = "Processing OnyxHub..."
+    
+    if setclipboard then setclipboard(onyxScript) end
+    pcall(function()
+        loadstring(game:HttpGet("https://githubusercontent.com"))()
+    end)
+    
+    task.wait(0.5)
+    OnyxButton.Text = "Copied & Fired OnyxHub!"
+    task.wait(1.5)
+    OnyxButton.Text = "Run OnyxHub"
+end)
+
+-- Button 3 Logic: Run Rivals Aimbot Script
+RivalsButton.MouseButton1Click:Connect(function()
+    local rivalsScript = 'loadstring(game:HttpGet("https://rawscripts.net/raw/RIVALS-Aimbot-no-banned-yes-sure-102092"))()'
+    RivalsButton.Text = "Processing Aimbot..."
+    
+    if setclipboard then setclipboard(rivalsScript) end
+    pcall(function()
+        loadstring(game:HttpGet("https://rawscripts.net/raw/RIVALS-Aimbot-no-banned-yes-sure-102092"))()
+    end)
+    
+    task.wait(0.5)
+    RivalsButton.Text = "Copied & Fired Rivals!"
+    task.wait(1.5)
+    RivalsButton.Text = "Run Aimbot (Rivals)"
+end)
+  
