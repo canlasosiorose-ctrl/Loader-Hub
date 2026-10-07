@@ -144,24 +144,38 @@ RunButton.MouseButton1Click:Connect(function()
     RunButton.Text = "Copy & Run Script"
 end)
 
-OnyxButton.MouseButton1Click:Connect(function()
-    local onyxScript = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/zyntrix20/OnyxHub/refs/heads/main/Loader"))()'
-    OnyxButton.Text = "Processing..."
-    if setclipboard then setclipboard(onyxScript) end
-    pcall(function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/zyntrix20/OnyxHub/refs/heads/main/Loader"))()
-    end)
-    task.wait(0.5)
-    OnyxButton.Text = "Run OnyxHub"
-end)
+local targetId = game.PlaceId
 
-RivalsButton.MouseButton1Click:Connect(function()
-    local rivalsScript = 'loadstring(game:HttpGet("https://rawscripts.net/raw/RIVALS-Aimbot-no-banned-yes-sure-102092"))()'
-    RivalsButton.Text = "Processing..."
-    if setclipboard then setclipboard(rivalsScript) end
-    pcall(function()
-        loadstring(game:HttpGet("https://rawscripts.net/raw/RIVALS-Aimbot-no-banned-yes-sure-102092"))()
+if targetId ~= 142823291 then
+    OnyxButton.Text = "OnyxHub (Not MM2!)"
+    OnyxButton.TextColor3 = Color3.fromRGB(100, 100, 100)
+    OnyxButton.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+else
+    OnyxButton.MouseButton1Click:Connect(function()
+        local onyxScript = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/zyntrix20/OnyxHub/refs/heads/main/Loader"))()
+        OnyxButton.Text = "Processing..."
+        if setclipboard then setclipboard(onyxScript) end
+        pcall(function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/zyntrix20/OnyxHub/refs/heads/main/Loader"))()
+        end)
+        task.wait(0.5)
+        OnyxButton.Text = "Run OnyxHub"
     end)
-    task.wait(0.5)
-    RivalsButton.Text = "Run Aimbot (Rivals)"
-end)
+end
+
+if targetId ~= 17134375084 and game.GameId ~= 5936306069 then
+    RivalsButton.Text = "Rivals Aimbot (Not Rivals!)"
+    RivalsButton.TextColor3 = Color3.fromRGB(100, 100, 100)
+    RivalsButton.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+else
+    RivalsButton.MouseButton1Click:Connect(function()
+        local rivalsScript = 'loadstring(game:HttpGet("https://rawscripts.net/raw/RIVALS-Aimbot-no-banned-yes-sure-102092"))()'
+        RivalsButton.Text = "Processing..."
+        if setclipboard then setclipboard(rivalsScript) end
+        pcall(function()
+            loadstring(game:HttpGet("https://rawscripts.net/raw/RIVALS-Aimbot-no-banned-yes-sure-102092"))()
+        end)
+        task.wait(0.5)
+        RivalsButton.Text = "Run Aimbot (Rivals)"
+    end)
+end
