@@ -152,7 +152,7 @@ if targetId ~= 142823291 then
     OnyxButton.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
 else
     OnyxButton.MouseButton1Click:Connect(function()
-        local onyxScript = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/zyntrix20/OnyxHub/refs/heads/main/Loader"))()
+        local onyxScript = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/zyntrix20/OnyxHub/refs/heads/main/Loader"))()'
         OnyxButton.Text = "Processing..."
         if setclipboard then setclipboard(onyxScript) end
         pcall(function()
